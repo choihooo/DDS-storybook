@@ -1,0 +1,515 @@
+import{j as e}from"./jsx-runtime-u17CrQMm.js";import{B as i}from"./Button-BpMQEa3A.js";import{R as c,r as d}from"./iframe-fG-jDoif.js";import{a as q}from"./index-CJceeV3S.js";import"./preload-helper-PPVm8Dsz.js";function D({state:n,send:o,ctx:r}){return{overlayProps:{onClick:s=>{s.target===s.currentTarget&&r.closeOnOverlayClick&&o({type:"CLOSE",payload:{source:"overlay"}})},"data-open":n.isOpen,"data-closing":n.isClosing},contentProps:{role:"dialog","aria-modal":!0,onKeyDown:s=>{s.key==="Escape"&&r.closeOnEscape&&o({type:"CLOSE",payload:{source:"escape"}})},onClick:s=>{s.stopPropagation()}},closeButtonProps:{onClick:()=>{o({type:"CLOSE",payload:{source:"button"}})},"aria-label":"닫기"}}}function I(n){const{open:o=!1,onOpenChange:r,closeOnOverlayClick:s=!0,closeOnEscape:l=!0}=n,g=c.useRef(r);c.useEffect(()=>{g.current=r},[r]);const[a,u]=c.useState({isOpen:o,isClosing:!1});c.useEffect(()=>{o&&!a.isOpen?u({isOpen:!0,isClosing:!1}):!o&&a.isOpen&&!a.isClosing&&u(p=>({...p,isClosing:!0}))},[o,a.isOpen,a.isClosing]),c.useEffect(()=>{if(a.isClosing){const p=setTimeout(()=>{u({isOpen:!1,isClosing:!1}),g.current?.(!1)},200);return()=>clearTimeout(p)}},[a.isClosing]);const x=c.useCallback(p=>{p.type==="CLOSE"&&a.isOpen&&!a.isClosing&&u(L=>({...L,isClosing:!0}))},[a.isOpen,a.isClosing]),P=c.useMemo(()=>({closeOnOverlayClick:s,closeOnEscape:l,onOpenChange:p=>{g.current?.(p)}}),[s,l]);return c.useEffect(()=>{if(a.isOpen){const p=document.body.style.overflow;return document.body.style.overflow="hidden",()=>{document.body.style.overflow=p}}},[a.isOpen]),c.useMemo(()=>({...D({state:a,send:x,ctx:P}),isClosing:a.isClosing}),[a,x,P])}var V="_2n06j50",$="_2n06j51",K={small:"_2n06j52",medium:"_2n06j53",large:"_2n06j54"},G="_2n06j55",J="_2n06j56";function W(){return J}function Q(n={}){const{size:o="medium"}=n,r=K[o],s=[$,r].filter(Boolean).join(" ");return{overlay:V,content:s,closeButton:G,header:W()}}const A=d.createContext(null);function w(){const n=d.useContext(A);if(!n)throw new Error("Modal compound components must be used within Modal.Root");return n}function N({open:n,onOpenChange:o,closeOnOverlayClick:r=!0,closeOnEscape:s=!0,size:l="medium",children:g}){const a=I({open:n,onOpenChange:o,closeOnOverlayClick:r,closeOnEscape:s}),u=Q({size:l});if(!n&&!a.isClosing)return null;const x={open:n,api:a,classNames:u,size:l};return e.jsx(A.Provider,{value:x,children:g})}function F({className:n,children:o,...r}){const{api:s,classNames:l}=w();return e.jsx("div",{...s.overlayProps,className:[l.overlay,n].filter(Boolean).join(" "),...r,children:o})}function H({className:n,children:o,...r}){const{api:s,classNames:l}=w();return e.jsx("div",{...s.contentProps,className:[l.content,n].filter(Boolean).join(" "),...r,children:o})}function _({className:n,children:o,...r}){const{api:s,classNames:l}=w();return e.jsx("button",{...s.closeButtonProps,className:[l.closeButton,n].filter(Boolean).join(" "),...r,children:o??e.jsx(q.Close,{size:"md"})})}function U({className:n,children:o,...r}){const s=W();return e.jsx("h2",{className:[s,n].filter(Boolean).join(" "),...r,children:o})}function t({showCloseButton:n=!0,children:o,actionButton:r,...s}){return e.jsx(N,{...s,children:e.jsx(F,{children:e.jsxs(H,{children:[n&&e.jsx(_,{}),o,r&&e.jsx("div",{style:{marginTop:"32px",display:"flex"},children:e.jsx(i,{variant:"primary",onClick:r.onClick,full:!0,children:r.label})})]})})})}t.Root=N;t.Overlay=F;t.Content=H;t.CloseButton=_;t.Header=U;t.__docgenInfo={description:"",methods:[{name:"Root",docblock:null,modifiers:["static"],params:[{name:`{
+  open,
+  onOpenChange,
+  closeOnOverlayClick = true,
+  closeOnEscape = true,
+  size = "medium",
+  children,
+}: ModalRootProps`,optional:!1,type:{name:"ModalRootProps",alias:"ModalRootProps"}}],returns:null},{name:"Overlay",docblock:null,modifiers:["static"],params:[{name:"{ className, children, ...rest }: ModalOverlayProps",optional:!1,type:{name:"ModalOverlayProps",alias:"ModalOverlayProps"}}],returns:null},{name:"Content",docblock:null,modifiers:["static"],params:[{name:"{ className, children, ...rest }: ModalContentProps",optional:!1,type:{name:"ModalContentProps",alias:"ModalContentProps"}}],returns:null},{name:"CloseButton",docblock:null,modifiers:["static"],params:[{name:`{
+  className,
+  children,
+  ...rest
+}: ModalCloseButtonProps`,optional:!1,type:{name:"ModalCloseButtonProps",alias:"ModalCloseButtonProps"}}],returns:null},{name:"Header",docblock:null,modifiers:["static"],params:[{name:"{ className, children, ...rest }: ModalHeaderProps",optional:!1,type:{name:"ModalHeaderProps",alias:"ModalHeaderProps"}}],returns:null}],displayName:"Modal",props:{open:{required:!0,tsType:{name:"boolean"},description:""},onOpenChange:{required:!1,tsType:{name:"signature",type:"function",raw:"(isOpen: boolean) => void",signature:{arguments:[{type:{name:"boolean"},name:"isOpen"}],return:{name:"void"}}},description:""},closeOnOverlayClick:{required:!1,tsType:{name:"boolean"},description:""},closeOnEscape:{required:!1,tsType:{name:"boolean"},description:""},children:{required:!0,tsType:{name:"ReactNode"},description:""},showCloseButton:{required:!1,tsType:{name:"boolean"},description:"",defaultValue:{value:"true",computed:!1}},actionButton:{required:!1,tsType:{name:"signature",type:"object",raw:`{
+  label: string;
+  onClick?: () => void;
+}`,signature:{properties:[{key:"label",value:{name:"string",required:!0}},{key:"onClick",value:{name:"signature",type:"function",raw:"() => void",signature:{arguments:[],return:{name:"void"}},required:!1}}]}},description:""}},composes:["ModalRecipeProps"]};const oe={title:"Components/Modal",component:t,args:{open:!1,children:"모달 내용"},argTypes:{open:{control:"boolean",description:"모달 열림/닫힘 상태"},size:{control:"select",options:["small","medium","large"],description:"모달 크기"},closeOnOverlayClick:{control:"boolean",description:"오버레이 클릭 시 닫기 여부"},closeOnEscape:{control:"boolean",description:"ESC 키로 닫기 여부"},showCloseButton:{control:"boolean",description:"닫기 버튼 표시 여부"}},parameters:{docs:{description:{component:`
+Modal 컴포넌트는 사용자에게 중요한 정보를 표시하거나 확인을 받을 때 사용합니다.
+
+## 주요 기능
+
+- **크기 옵션**: small (400px), medium (600px), large (800px)
+- **닫기 방법**: 오버레이 클릭, ESC 키, 닫기 버튼
+- **애니메이션**: 열기/닫기 시 부드러운 전환 효과
+- **접근성**: ARIA 속성 지원, 키보드 네비게이션 지원
+
+## 사용 방법
+
+### 기본 사용법
+
+\`\`\`tsx
+<Modal open={open} onOpenChange={setOpen}>
+  <div>모달 내용</div>
+</Modal>
+\`\`\`
+
+### 컴파운드 패턴
+
+더 유연한 구조를 위해 컴파운드 패턴을 사용할 수 있습니다:
+
+\`\`\`tsx
+<Modal.Root open={open} onOpenChange={setOpen}>
+  <Modal.Overlay>
+    <Modal.Content>
+      <Modal.CloseButton />
+      <div>커스텀 레이아웃</div>
+    </Modal.Content>
+  </Modal.Overlay>
+</Modal.Root>
+\`\`\`
+        `}}}};function m({children:n,...o}){const[r,s]=d.useState(o.open);return e.jsxs(e.Fragment,{children:[e.jsx(i,{onClick:()=>s(!0),children:"모달 열기"}),e.jsx(t,{...o,open:r,onOpenChange:s,children:n})]})}const h={render:n=>e.jsx(m,{...n}),args:{size:"medium",children:e.jsxs("div",{children:[e.jsx("h2",{style:{marginTop:0,marginBottom:"16px"},children:"모달 제목"}),e.jsx("p",{style:{margin:0},children:"이것은 기본 모달입니다. 내용을 여기에 작성할 수 있습니다."})]})}},y={render:n=>e.jsx(m,{...n}),args:{size:"small",children:e.jsxs("div",{children:[e.jsx("h2",{style:{marginTop:0,marginBottom:"16px"},children:"작은 모달"}),e.jsx("p",{style:{margin:0},children:"작은 크기의 모달입니다 (400px)."})]})}},C={render:n=>e.jsx(m,{...n}),args:{size:"medium",children:e.jsxs("div",{children:[e.jsx("h2",{style:{marginTop:0,marginBottom:"16px"},children:"중간 모달"}),e.jsx("p",{style:{margin:0},children:"중간 크기의 모달입니다 (600px)."})]})}},j={render:n=>e.jsx(m,{...n}),args:{size:"large",children:e.jsxs("div",{children:[e.jsx("h2",{style:{marginTop:0,marginBottom:"16px"},children:"큰 모달"}),e.jsx("p",{style:{margin:0},children:"큰 크기의 모달입니다 (800px)."})]})}},f={render:n=>e.jsx(m,{...n}),args:{size:"medium",showCloseButton:!1,children:e.jsxs("div",{children:[e.jsx("h2",{style:{marginTop:0,marginBottom:"16px"},children:"닫기 버튼 없음"}),e.jsx("p",{style:{margin:0},children:"이 모달은 닫기 버튼이 없습니다. 오버레이 클릭이나 ESC 키로만 닫을 수 있습니다."})]})}},v={render:n=>e.jsx(m,{...n}),args:{size:"medium",closeOnOverlayClick:!1,children:e.jsxs("div",{children:[e.jsx("h2",{style:{marginTop:0,marginBottom:"16px"},children:"오버레이 클릭 비활성화"}),e.jsx("p",{style:{margin:0},children:"이 모달은 오버레이 클릭으로 닫을 수 없습니다. 닫기 버튼이나 ESC 키만 사용할 수 있습니다."})]})}},O={render:n=>e.jsx(m,{...n}),args:{size:"medium",closeOnEscape:!1,children:e.jsxs("div",{children:[e.jsx("h2",{style:{marginTop:0,marginBottom:"16px"},children:"ESC 키 비활성화"}),e.jsx("p",{style:{margin:0},children:"이 모달은 ESC 키로 닫을 수 없습니다. 닫기 버튼이나 오버레이 클릭만 사용할 수 있습니다."})]})}},B={render:n=>e.jsx(m,{...n}),args:{size:"medium",children:e.jsxs("div",{children:[e.jsx("h2",{style:{marginTop:0,marginBottom:"16px"},children:"긴 내용"}),e.jsxs("div",{style:{marginBottom:"16px"},children:[e.jsx("p",{children:"이 모달은 스크롤 가능한 긴 내용을 포함합니다."}),Array.from({length:20},(n,o)=>e.jsxs("p",{style:{margin:"8px 0"},children:[o+1,"번째 문단입니다. 모달의 최대 높이는 90vh로 제한되며, 내용이 길 경우 자동으로 스크롤됩니다."]},`paragraph-${o+1}`))]})]})}},M={render:n=>e.jsx(m,{...n}),args:{size:"medium",children:e.jsxs("div",{children:[e.jsx("h2",{style:{marginTop:0,marginBottom:"16px"},children:"폼 예제"}),e.jsxs("form",{onSubmit:n=>{n.preventDefault(),alert("제출되었습니다!")},children:[e.jsxs("div",{style:{marginBottom:"16px"},children:[e.jsx("label",{htmlFor:"name",style:{display:"block",marginBottom:"8px"},children:"이름"}),e.jsx("input",{id:"name",type:"text",style:{width:"100%",padding:"8px",border:"1px solid #ccc",borderRadius:"4px"}})]}),e.jsxs("div",{style:{marginBottom:"16px"},children:[e.jsx("label",{htmlFor:"email",style:{display:"block",marginBottom:"8px"},children:"이메일"}),e.jsx("input",{id:"email",type:"email",style:{width:"100%",padding:"8px",border:"1px solid #ccc",borderRadius:"4px"}})]}),e.jsxs("div",{style:{display:"flex",gap:"8px",justifyContent:"flex-end"},children:[e.jsx(i,{variant:"default",type:"button",children:"취소"}),e.jsx(i,{variant:"primary",type:"submit",children:"제출"})]})]})]})}},b={render:n=>{const[o,r]=d.useState(!1);return e.jsxs(e.Fragment,{children:[e.jsx(i,{onClick:()=>r(!0),children:"모달 열기"}),e.jsx(t,{...n,open:o,onOpenChange:r,actionButton:{label:"119 신고하기",onClick:()=>{alert("119에 신고되었습니다!"),r(!1)}},children:n.children})]})},args:{size:"medium",children:e.jsxs("div",{children:[e.jsx("h2",{style:{marginTop:0,marginBottom:"16px"},children:"맞아요!"}),e.jsx("p",{style:{margin:0},children:"119에 도움을 요청해보세요!"})]})}},S={render:()=>{const n=["small","medium","large"];return e.jsx("div",{style:{padding:"24px"},children:e.jsxs("table",{style:{borderCollapse:"collapse",width:"100%"},children:[e.jsx("thead",{children:e.jsxs("tr",{children:[e.jsx("th",{style:{padding:"12px",textAlign:"left",fontSize:"14px",fontWeight:600,color:"#111827",borderBottom:"1px solid #e5e7eb"},children:"Size"}),e.jsx("th",{style:{padding:"12px",textAlign:"center",fontSize:"14px",fontWeight:600,color:"#111827",borderBottom:"1px solid #e5e7eb"},children:"Preview"})]})}),e.jsx("tbody",{children:n.map(o=>{const r=()=>{const[s,l]=d.useState(!1);return e.jsxs(e.Fragment,{children:[e.jsx(i,{onClick:()=>l(!0),children:"모달 열기"}),e.jsx(t,{size:o,open:s,onOpenChange:l,children:e.jsxs("div",{children:[e.jsxs("h3",{style:{marginTop:0,marginBottom:"8px"},children:[o," 모달"]}),e.jsx("p",{style:{margin:0},children:o==="small"?"작은 크기의 모달입니다.":o==="medium"?"중간 크기의 모달입니다.":"큰 크기의 모달입니다."})]})})]})};return e.jsxs("tr",{children:[e.jsxs("td",{style:{padding:"16px",fontSize:"14px",fontWeight:500,color:"#374151",borderBottom:"1px solid #e5e7eb",verticalAlign:"middle"},children:[o," (",o==="small"?"400px":o==="medium"?"600px":"800px",")"]}),e.jsx("td",{style:{padding:"16px",textAlign:"center",borderBottom:"1px solid #e5e7eb"},children:e.jsx(r,{})})]},o)})})]})})}},k={render:()=>{const[n,o]=d.useState(!1);return e.jsxs(e.Fragment,{children:[e.jsx(i,{onClick:()=>o(!0),children:"컴파운드 패턴 모달 열기"}),e.jsx(t.Root,{open:n,onOpenChange:o,size:"medium",children:e.jsx(t.Overlay,{children:e.jsxs(t.Content,{children:[e.jsx(t.CloseButton,{}),e.jsxs("div",{children:[e.jsx("h2",{style:{marginTop:0,marginBottom:"16px"},children:"컴파운드 패턴"}),e.jsx("p",{style:{margin:0},children:"이 모달은 컴파운드 패턴으로 구성되었습니다. 각 부분을 독립적으로 제어할 수 있어 더 유연한 레이아웃이 가능합니다."})]})]})})})]})}},z={render:()=>{const[n,o]=d.useState(!1);return e.jsxs(e.Fragment,{children:[e.jsx(i,{onClick:()=>o(!0),children:"커스텀 레이아웃 모달 열기"}),e.jsx(t.Root,{open:n,onOpenChange:o,size:"large",children:e.jsx(t.Overlay,{children:e.jsxs(t.Content,{children:[e.jsxs("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:"24px"},children:[e.jsx("h2",{style:{margin:0},children:"커스텀 레이아웃"}),e.jsx(t.CloseButton,{})]}),e.jsxs("div",{children:[e.jsx("p",{children:"닫기 버튼을 상단 오른쪽이 아닌 다른 위치에 배치할 수 있습니다."}),e.jsxs("div",{style:{display:"flex",gap:"8px",justifyContent:"flex-end",marginTop:"24px"},children:[e.jsx(i,{variant:"default",onClick:()=>o(!1),children:"취소"}),e.jsx(i,{variant:"primary",onClick:()=>o(!1),children:"확인"})]})]})]})})})]})}},T={render:()=>{const[n,o]=d.useState(!1);return e.jsxs(e.Fragment,{children:[e.jsx(i,{onClick:()=>o(!0),children:"닫기 버튼 없는 모달 열기"}),e.jsx(t.Root,{open:n,onOpenChange:o,size:"medium",children:e.jsx(t.Overlay,{children:e.jsx(t.Content,{children:e.jsxs("div",{children:[e.jsx("h2",{style:{marginTop:0,marginBottom:"16px"},children:"닫기 버튼 없음"}),e.jsx("p",{style:{margin:0},children:"컴파운드 패턴을 사용하면 닫기 버튼을 아예 렌더링하지 않을 수 있습니다."}),e.jsx("div",{style:{display:"flex",gap:"8px",justifyContent:"flex-end",marginTop:"24px"},children:e.jsx(i,{variant:"primary",onClick:()=>o(!1),children:"확인"})})]})})})})]})}},R={render:()=>{const[n,o]=d.useState(!1);return e.jsxs(e.Fragment,{children:[e.jsx(i,{onClick:()=>o(!0),children:"커스텀 오버레이 모달 열기"}),e.jsx(t.Root,{open:n,onOpenChange:o,size:"medium",children:e.jsx(t.Overlay,{style:{backgroundColor:"rgba(0, 0, 0, 0.7)"},children:e.jsxs(t.Content,{children:[e.jsx(t.CloseButton,{}),e.jsxs("div",{children:[e.jsx("h2",{style:{marginTop:0,marginBottom:"16px"},children:"커스텀 오버레이"}),e.jsx("p",{style:{margin:0},children:"오버레이의 스타일을 커스터마이징할 수 있습니다."})]})]})})})]})}},E={render:()=>{const[n,o]=d.useState(!1);return e.jsxs(e.Fragment,{children:[e.jsx(i,{onClick:()=>o(!0),children:"헤더 있는 모달 열기"}),e.jsx(t.Root,{open:n,onOpenChange:o,size:"medium",children:e.jsx(t.Overlay,{children:e.jsxs(t.Content,{children:[e.jsx(t.CloseButton,{}),e.jsx(t.Header,{children:"모달 제목"}),e.jsx("p",{style:{margin:0},children:"Modal.Header 컴포넌트를 사용하여 일관된 스타일의 제목을 표시할 수 있습니다."})]})})})]})}};h.parameters={...h.parameters,docs:{...h.parameters?.docs,source:{originalSource:`{
+  render: args => <ModalWrapper {...args} />,
+  args: {
+    size: "medium",
+    children: <div>
+        <h2 style={{
+        marginTop: 0,
+        marginBottom: "16px"
+      }}>모달 제목</h2>
+        <p style={{
+        margin: 0
+      }}>
+          이것은 기본 모달입니다. 내용을 여기에 작성할 수 있습니다.
+        </p>
+      </div>
+  }
+}`,...h.parameters?.docs?.source}}};y.parameters={...y.parameters,docs:{...y.parameters?.docs,source:{originalSource:`{
+  render: args => <ModalWrapper {...args} />,
+  args: {
+    size: "small",
+    children: <div>
+        <h2 style={{
+        marginTop: 0,
+        marginBottom: "16px"
+      }}>작은 모달</h2>
+        <p style={{
+        margin: 0
+      }}>작은 크기의 모달입니다 (400px).</p>
+      </div>
+  }
+}`,...y.parameters?.docs?.source}}};C.parameters={...C.parameters,docs:{...C.parameters?.docs,source:{originalSource:`{
+  render: args => <ModalWrapper {...args} />,
+  args: {
+    size: "medium",
+    children: <div>
+        <h2 style={{
+        marginTop: 0,
+        marginBottom: "16px"
+      }}>중간 모달</h2>
+        <p style={{
+        margin: 0
+      }}>중간 크기의 모달입니다 (600px).</p>
+      </div>
+  }
+}`,...C.parameters?.docs?.source}}};j.parameters={...j.parameters,docs:{...j.parameters?.docs,source:{originalSource:`{
+  render: args => <ModalWrapper {...args} />,
+  args: {
+    size: "large",
+    children: <div>
+        <h2 style={{
+        marginTop: 0,
+        marginBottom: "16px"
+      }}>큰 모달</h2>
+        <p style={{
+        margin: 0
+      }}>큰 크기의 모달입니다 (800px).</p>
+      </div>
+  }
+}`,...j.parameters?.docs?.source}}};f.parameters={...f.parameters,docs:{...f.parameters?.docs,source:{originalSource:`{
+  render: args => <ModalWrapper {...args} />,
+  args: {
+    size: "medium",
+    showCloseButton: false,
+    children: <div>
+        <h2 style={{
+        marginTop: 0,
+        marginBottom: "16px"
+      }}>닫기 버튼 없음</h2>
+        <p style={{
+        margin: 0
+      }}>
+          이 모달은 닫기 버튼이 없습니다. 오버레이 클릭이나 ESC 키로만 닫을 수
+          있습니다.
+        </p>
+      </div>
+  }
+}`,...f.parameters?.docs?.source}}};v.parameters={...v.parameters,docs:{...v.parameters?.docs,source:{originalSource:`{
+  render: args => <ModalWrapper {...args} />,
+  args: {
+    size: "medium",
+    closeOnOverlayClick: false,
+    children: <div>
+        <h2 style={{
+        marginTop: 0,
+        marginBottom: "16px"
+      }}>
+          오버레이 클릭 비활성화
+        </h2>
+        <p style={{
+        margin: 0
+      }}>
+          이 모달은 오버레이 클릭으로 닫을 수 없습니다. 닫기 버튼이나 ESC 키만
+          사용할 수 있습니다.
+        </p>
+      </div>
+  }
+}`,...v.parameters?.docs?.source}}};O.parameters={...O.parameters,docs:{...O.parameters?.docs,source:{originalSource:`{
+  render: args => <ModalWrapper {...args} />,
+  args: {
+    size: "medium",
+    closeOnEscape: false,
+    children: <div>
+        <h2 style={{
+        marginTop: 0,
+        marginBottom: "16px"
+      }}>ESC 키 비활성화</h2>
+        <p style={{
+        margin: 0
+      }}>
+          이 모달은 ESC 키로 닫을 수 없습니다. 닫기 버튼이나 오버레이 클릭만
+          사용할 수 있습니다.
+        </p>
+      </div>
+  }
+}`,...O.parameters?.docs?.source}}};B.parameters={...B.parameters,docs:{...B.parameters?.docs,source:{originalSource:`{
+  render: args => <ModalWrapper {...args} />,
+  args: {
+    size: "medium",
+    children: <div>
+        <h2 style={{
+        marginTop: 0,
+        marginBottom: "16px"
+      }}>긴 내용</h2>
+        <div style={{
+        marginBottom: "16px"
+      }}>
+          <p>이 모달은 스크롤 가능한 긴 내용을 포함합니다.</p>
+          {Array.from({
+          length: 20
+        }, (_, i) => <p key={\`paragraph-\${i + 1}\`} style={{
+          margin: "8px 0"
+        }}>
+              {i + 1}번째 문단입니다. 모달의 최대 높이는 90vh로 제한되며, 내용이
+              길 경우 자동으로 스크롤됩니다.
+            </p>)}
+        </div>
+      </div>
+  }
+}`,...B.parameters?.docs?.source}}};M.parameters={...M.parameters,docs:{...M.parameters?.docs,source:{originalSource:`{
+  render: args => <ModalWrapper {...args} />,
+  args: {
+    size: "medium",
+    children: <div>
+        <h2 style={{
+        marginTop: 0,
+        marginBottom: "16px"
+      }}>폼 예제</h2>
+        <form onSubmit={e => {
+        e.preventDefault();
+        alert("제출되었습니다!");
+      }}>
+          <div style={{
+          marginBottom: "16px"
+        }}>
+            <label htmlFor="name" style={{
+            display: "block",
+            marginBottom: "8px"
+          }}>
+              이름
+            </label>
+            <input id="name" type="text" style={{
+            width: "100%",
+            padding: "8px",
+            border: "1px solid #ccc",
+            borderRadius: "4px"
+          }} />
+          </div>
+          <div style={{
+          marginBottom: "16px"
+        }}>
+            <label htmlFor="email" style={{
+            display: "block",
+            marginBottom: "8px"
+          }}>
+              이메일
+            </label>
+            <input id="email" type="email" style={{
+            width: "100%",
+            padding: "8px",
+            border: "1px solid #ccc",
+            borderRadius: "4px"
+          }} />
+          </div>
+          <div style={{
+          display: "flex",
+          gap: "8px",
+          justifyContent: "flex-end"
+        }}>
+            <Button variant="default" type="button">
+              취소
+            </Button>
+            <Button variant="primary" type="submit">
+              제출
+            </Button>
+          </div>
+        </form>
+      </div>
+  }
+}`,...M.parameters?.docs?.source}}};b.parameters={...b.parameters,docs:{...b.parameters?.docs,source:{originalSource:`{
+  render: args => {
+    const [open, setOpen] = useState(false);
+    return <>
+        <Button onClick={() => setOpen(true)}>모달 열기</Button>
+        <Modal {...args} open={open} onOpenChange={setOpen} actionButton={{
+        label: "119 신고하기",
+        onClick: () => {
+          alert("119에 신고되었습니다!");
+          setOpen(false);
+        }
+      }}>
+          {args.children}
+        </Modal>
+      </>;
+  },
+  args: {
+    size: "medium",
+    children: <div>
+        <h2 style={{
+        marginTop: 0,
+        marginBottom: "16px"
+      }}>맞아요!</h2>
+        <p style={{
+        margin: 0
+      }}>119에 도움을 요청해보세요!</p>
+      </div>
+  }
+}`,...b.parameters?.docs?.source}}};S.parameters={...S.parameters,docs:{...S.parameters?.docs,source:{originalSource:`{
+  render: () => {
+    const sizes = ["small", "medium", "large"] as const;
+    return <div style={{
+      padding: "24px"
+    }}>
+        <table style={{
+        borderCollapse: "collapse",
+        width: "100%"
+      }}>
+          <thead>
+            <tr>
+              <th style={{
+              padding: "12px",
+              textAlign: "left",
+              fontSize: "14px",
+              fontWeight: 600,
+              color: "#111827",
+              borderBottom: "1px solid #e5e7eb"
+            }}>
+                Size
+              </th>
+              <th style={{
+              padding: "12px",
+              textAlign: "center",
+              fontSize: "14px",
+              fontWeight: 600,
+              color: "#111827",
+              borderBottom: "1px solid #e5e7eb"
+            }}>
+                Preview
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {sizes.map(size => {
+            const SizeRow = () => {
+              const [open, setOpen] = useState(false);
+              return <>
+                    <Button onClick={() => setOpen(true)}>모달 열기</Button>
+                    <Modal size={size} open={open} onOpenChange={setOpen}>
+                      <div>
+                        <h3 style={{
+                      marginTop: 0,
+                      marginBottom: "8px"
+                    }}>
+                          {size} 모달
+                        </h3>
+                        <p style={{
+                      margin: 0
+                    }}>
+                          {size === "small" ? "작은 크기의 모달입니다." : size === "medium" ? "중간 크기의 모달입니다." : "큰 크기의 모달입니다."}
+                        </p>
+                      </div>
+                    </Modal>
+                  </>;
+            };
+            return <tr key={size}>
+                  <td style={{
+                padding: "16px",
+                fontSize: "14px",
+                fontWeight: 500,
+                color: "#374151",
+                borderBottom: "1px solid #e5e7eb",
+                verticalAlign: "middle"
+              }}>
+                    {size} (
+                    {size === "small" ? "400px" : size === "medium" ? "600px" : "800px"}
+                    )
+                  </td>
+                  <td style={{
+                padding: "16px",
+                textAlign: "center",
+                borderBottom: "1px solid #e5e7eb"
+              }}>
+                    <SizeRow />
+                  </td>
+                </tr>;
+          })}
+          </tbody>
+        </table>
+      </div>;
+  }
+}`,...S.parameters?.docs?.source}}};k.parameters={...k.parameters,docs:{...k.parameters?.docs,source:{originalSource:`{
+  render: () => {
+    const [open, setOpen] = useState(false);
+    return <>
+        <Button onClick={() => setOpen(true)}>컴파운드 패턴 모달 열기</Button>
+        <Modal.Root open={open} onOpenChange={setOpen} size="medium">
+          <Modal.Overlay>
+            <Modal.Content>
+              <Modal.CloseButton />
+              <div>
+                <h2 style={{
+                marginTop: 0,
+                marginBottom: "16px"
+              }}>
+                  컴파운드 패턴
+                </h2>
+                <p style={{
+                margin: 0
+              }}>
+                  이 모달은 컴파운드 패턴으로 구성되었습니다. 각 부분을
+                  독립적으로 제어할 수 있어 더 유연한 레이아웃이 가능합니다.
+                </p>
+              </div>
+            </Modal.Content>
+          </Modal.Overlay>
+        </Modal.Root>
+      </>;
+  }
+}`,...k.parameters?.docs?.source}}};z.parameters={...z.parameters,docs:{...z.parameters?.docs,source:{originalSource:`{
+  render: () => {
+    const [open, setOpen] = useState(false);
+    return <>
+        <Button onClick={() => setOpen(true)}>커스텀 레이아웃 모달 열기</Button>
+        <Modal.Root open={open} onOpenChange={setOpen} size="large">
+          <Modal.Overlay>
+            <Modal.Content>
+              <div style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "flex-start",
+              marginBottom: "24px"
+            }}>
+                <h2 style={{
+                margin: 0
+              }}>커스텀 레이아웃</h2>
+                <Modal.CloseButton />
+              </div>
+              <div>
+                <p>
+                  닫기 버튼을 상단 오른쪽이 아닌 다른 위치에 배치할 수 있습니다.
+                </p>
+                <div style={{
+                display: "flex",
+                gap: "8px",
+                justifyContent: "flex-end",
+                marginTop: "24px"
+              }}>
+                  <Button variant="default" onClick={() => setOpen(false)}>
+                    취소
+                  </Button>
+                  <Button variant="primary" onClick={() => setOpen(false)}>
+                    확인
+                  </Button>
+                </div>
+              </div>
+            </Modal.Content>
+          </Modal.Overlay>
+        </Modal.Root>
+      </>;
+  }
+}`,...z.parameters?.docs?.source}}};T.parameters={...T.parameters,docs:{...T.parameters?.docs,source:{originalSource:`{
+  render: () => {
+    const [open, setOpen] = useState(false);
+    return <>
+        <Button onClick={() => setOpen(true)}>닫기 버튼 없는 모달 열기</Button>
+        <Modal.Root open={open} onOpenChange={setOpen} size="medium">
+          <Modal.Overlay>
+            <Modal.Content>
+              <div>
+                <h2 style={{
+                marginTop: 0,
+                marginBottom: "16px"
+              }}>
+                  닫기 버튼 없음
+                </h2>
+                <p style={{
+                margin: 0
+              }}>
+                  컴파운드 패턴을 사용하면 닫기 버튼을 아예 렌더링하지 않을 수
+                  있습니다.
+                </p>
+                <div style={{
+                display: "flex",
+                gap: "8px",
+                justifyContent: "flex-end",
+                marginTop: "24px"
+              }}>
+                  <Button variant="primary" onClick={() => setOpen(false)}>
+                    확인
+                  </Button>
+                </div>
+              </div>
+            </Modal.Content>
+          </Modal.Overlay>
+        </Modal.Root>
+      </>;
+  }
+}`,...T.parameters?.docs?.source}}};R.parameters={...R.parameters,docs:{...R.parameters?.docs,source:{originalSource:`{
+  render: () => {
+    const [open, setOpen] = useState(false);
+    return <>
+        <Button onClick={() => setOpen(true)}>커스텀 오버레이 모달 열기</Button>
+        <Modal.Root open={open} onOpenChange={setOpen} size="medium">
+          <Modal.Overlay style={{
+          backgroundColor: "rgba(0, 0, 0, 0.7)" // 더 어두운 오버레이
+        }}>
+            <Modal.Content>
+              <Modal.CloseButton />
+              <div>
+                <h2 style={{
+                marginTop: 0,
+                marginBottom: "16px"
+              }}>
+                  커스텀 오버레이
+                </h2>
+                <p style={{
+                margin: 0
+              }}>
+                  오버레이의 스타일을 커스터마이징할 수 있습니다.
+                </p>
+              </div>
+            </Modal.Content>
+          </Modal.Overlay>
+        </Modal.Root>
+      </>;
+  }
+}`,...R.parameters?.docs?.source}}};E.parameters={...E.parameters,docs:{...E.parameters?.docs,source:{originalSource:`{
+  render: () => {
+    const [open, setOpen] = useState(false);
+    return <>
+        <Button onClick={() => setOpen(true)}>헤더 있는 모달 열기</Button>
+        <Modal.Root open={open} onOpenChange={setOpen} size="medium">
+          <Modal.Overlay>
+            <Modal.Content>
+              <Modal.CloseButton />
+              <Modal.Header>모달 제목</Modal.Header>
+              <p style={{
+              margin: 0
+            }}>
+                Modal.Header 컴포넌트를 사용하여 일관된 스타일의 제목을 표시할
+                수 있습니다.
+              </p>
+            </Modal.Content>
+          </Modal.Overlay>
+        </Modal.Root>
+      </>;
+  }
+}`,...E.parameters?.docs?.source}}};const re=["Default","Small","Medium","Large","WithoutCloseButton","DisableOverlayClick","DisableEscape","LongContent","WithForm","WithActionButton","AllSizes","CompoundPattern","CompoundCustomLayout","CompoundWithoutCloseButton","CompoundWithCustomOverlay","CompoundWithHeader"];export{S as AllSizes,z as CompoundCustomLayout,k as CompoundPattern,R as CompoundWithCustomOverlay,E as CompoundWithHeader,T as CompoundWithoutCloseButton,h as Default,O as DisableEscape,v as DisableOverlayClick,j as Large,B as LongContent,C as Medium,y as Small,b as WithActionButton,M as WithForm,f as WithoutCloseButton,re as __namedExportsOrder,oe as default};
