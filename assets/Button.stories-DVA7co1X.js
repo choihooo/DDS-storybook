@@ -1,4 +1,4 @@
-import{j as n}from"./jsx-runtime-u17CrQMm.js";import{I as d}from"./index-CJceeV3S.js";import{B as l}from"./Button-CFFIWSXo.js";const e={white:"#FFF",G:{75:"#E4E5EA",600:"#4B5169"},O:{600:"#E86025"}},h={title:"Components/Button",component:l,args:{children:"Text"},argTypes:{variant:{control:"select",options:["default","gray","primary"]},full:{control:"boolean"},disabled:{control:"boolean"}},parameters:{a11y:{config:{rules:[{id:"color-contrast",enabled:!0}]}},docs:{description:{component:`
+import{j as n}from"./jsx-runtime-u17CrQMm.js";import{I as d}from"./index-CJceeV3S.js";import{B as l}from"./Button-DMFs1kJ0.js";const e={white:"#FFF",G:{75:"#E4E5EA",600:"#4B5169"},O:{600:"#E86025"}},h={title:"Components/Button",component:l,args:{children:"Text"},argTypes:{variant:{control:"select",options:["default","gray","primary"]},full:{control:"boolean"},disabled:{control:"boolean"}},parameters:{a11y:{config:{rules:[{id:"color-contrast",enabled:!0}]}},docs:{description:{component:`
 Button 컴포넌트는 다양한 variant와 상태를 지원합니다.
 
 ## 알려진 접근성 이슈
